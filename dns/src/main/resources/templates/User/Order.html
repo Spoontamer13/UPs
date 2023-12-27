@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <div th:insert="~{/User/blocks/header}"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2b8383;
+        }
+
+        tr:nth-child(even) {
+            background-color: #2b8383;
+        }
+
+        .btn:hover {
+            background-color: #f80202;
+        }
+    </style>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objectsPersonShop}">
+        <td th:text="${object.product.name}"></td>
+        <td th:text="${object.product.price}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/User/Order/{id}(id=${object.idPersonShop})}">🗑️</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

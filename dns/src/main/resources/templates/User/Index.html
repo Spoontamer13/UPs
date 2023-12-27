@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2b8383;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            margin-top: 20px;
+        }
+
+        button, input, select {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .input-group {
+            display: flex;
+        }
+
+        .form-control {
+            width: 200px;
+        }
+
+        .form-select {
+            width: 200px;
+        }
+
+        .btn-primary, .btn-light {
+            padding: 8px 16px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #023a46;
+            border-color: #023a46;
+            border-radius: 5px;
+        }
+
+        table {
+            margin-top: 20px;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tbody tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <div th:insert="~{/User/blocks/header}"/>
+</head>
+<body>
+<form th:action="@{/logout}" method="post">
+    <button type="submit">Выйти</button>
+</form>
+<div>
+    <form th:method="POST" th:action="@{/User/Index}">
+        <div class="input-group">
+            <div class="form-outline">
+                <input placeholder="Имя:" class="form-control p-2" type="text" name="name"/>
+            </div>
+            <div class="form-outline">
+                <select class="form-select h-100" name="address">
+                    <div th:each="object : ${objectsShop}">
+                        <option th:text="${object.address}" th:value="${object.address}"></option>
+                    </div>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                Поиск
+            </button>
+        </div>
+    </form>
+</div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Название</th>
+        <th>Цена</th>
+        <th>Корзина</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objectsProduct}">
+        <td th:text="${object.idProduct}"></td>
+        <td th:text="${object.name}"></td>
+        <td th:text="${object.price}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/User/Product/{id}(id=${object.idProduct})}">🛒</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

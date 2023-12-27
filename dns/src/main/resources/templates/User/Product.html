@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{/User/blocks/header}"/>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa; /* Цвет фона страницы */
+        }
+
+        header {
+            /* Ваши стили для заголовка, если необходимо */
+        }
+
+        main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .product-section {
+            background-color: #fff; /* Цвет блока товара */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin: 10px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .product-title {
+            color: #007bff; /* Цвет заголовка товара */
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .product-details {
+            margin-top: 20px;
+        }
+
+        .product-specs,
+        .product-description,
+        .product-price,
+        .product-manufacturer,
+        .product-category {
+            color: #495057; /* Цвет текста деталей товара */
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .operator {
+            background-color: #28a745; /* Цвет кнопки "Добавить в заказ" */
+            color: #fff; /* Цвет текста на кнопке */
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .operator:hover {
+            background-color: #218838; /* Измененный цвет кнопки при наведении */
+        }
+    </style>
+</head>
+<body>
+
+<main class="container-md" th:each="object : ${objectProduct}">
+    <form th:method="POST" th:action="@{/User/Product/{id}(id=${object.idProduct})}">
+    <h1 th:text="${object.name}"/>
+    <div  class="form-group">
+        <br/>
+        <h4 th:text="${object.specifications}"/>
+        <br/>
+        <h4 th:text="${object.description}"/>
+        <br/>
+        <h4 th:text="${object.price}"/>
+        <br/>
+        <h4 th:text="${object.manufacturerProduct.nameManufacturerProduct}"/>
+        <br/>
+        <h4 th:text="${object.productCategory.nameProductCategory}"/>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Добавить в заказ</button>
+    </div>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{/Moderator/blocks/header}"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-light {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-light:hover {
+            background-color: #ddd;
+        }
+
+        .btn-info {
+            background-color: #b25905;
+            color: #fff;
+        }
+
+        .btn-info:hover {
+            background-color: #b25905;
+        }
+
+        .operator {
+            display: block;
+            width: 100px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #b25905;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .operator:hover {
+            background-color: #b25905;
+        }
+    </style>
+</head>
+<body>
+<table class="table">
+    <thead>
+    <tr>
+        <th>Номер</th>
+        <th>Производитель</th>
+        <th>Действие</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="object : ${objects}">
+        <td th:text="${object.idManufacturerProduct}"></td>
+        <td th:text="${object.nameManufacturerProduct}"></td>
+        <td>
+            <a class="btn btn-light" th:href="@{/Moderator/ManufacturerProduct/Index/{id}(id=${object.idManufacturerProduct})}">Удалить</a>
+
+            <a class="btn btn-light" th:href="@{/Moderator/ManufacturerProduct/Update/{id}(id=${object.idManufacturerProduct})}">Изменить</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a class="operator btn btn-info" href="/Moderator/ManufacturerProduct/Add">Создать</a>
+</body>
+</html>

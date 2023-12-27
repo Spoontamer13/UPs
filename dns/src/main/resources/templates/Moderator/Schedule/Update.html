@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <div th:insert="~{/Moderator/blocks/header}"/>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f7f7;
+            margin: 0;
+            padding: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-light {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-light:hover {
+            background-color: #ddd;
+        }
+
+        .btn-info {
+            background-color: #b25905;
+            color: #fff;
+        }
+
+        .btn-info:hover {
+            background-color: #b25905;
+        }
+
+        .operator {
+            display: block;
+            width: 100px;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 10px;
+            background-color: #b25905;
+            color: #fff;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .operator:hover {
+            background-color: #b25905;
+        }
+    </style>
+</head>
+<body>
+<main class="container-md">
+    <h1>Редактирование</h1>
+    <form th:method="POST" th:action="@{/Moderator/Schedule/Update/{id}(id=${object.getIdTimetable()})}" th:object="${object}">
+        <input placeholder="График работы:" type="text" class="form-control p-2" th:field="*{schedule}"/>
+        <span th:if="${#fields.hasErrors('schedule')}" th:errors="*{schedule}" style="color: red"></span>
+        <br/>
+        <button type="submit"  class="operator btn btn-info">Сохранить</button>
+    </form>
+</main>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <style>
+    body {
+      background-size: cover;
+      background-attachment: fixed;
+      margin: 0;
+      height: 100vh;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .container {
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card {
+      border-radius: 1rem;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-body {
+      padding: 2.5rem;
+    }
+
+    input.form-control {
+      width: 100%;
+      padding: 0.75rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ced4da;
+      border-radius: 0.25rem;
+      box-sizing: border-box;
+    }
+
+    button.btn-info {
+      width: 100%;
+      padding: 0.75rem;
+      background-color: #17a2b8;
+      border: none;
+      color: #fff;
+      border-radius: 0.25rem;
+      cursor: pointer;
+    }
+
+    a.text-black-50 {
+      display: block;
+      margin-top: 1rem;
+      color: #343a40;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container py-5 h-100">
+  <div class="row d-flex justify-content-center align-items-center h-100">
+    <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+      <div class="card shadow-2-strong" style="border-radius: 1rem;">
+        <div class="card-body p-5 text-center">
+          <h3 class="mb-5">Авторизация</h3>
+          <form th:action="@{/Authorization}" method="post">
+            <input placeholder="Логин:" type="text" class="form-control" name="username"/>
+            <br/>
+            <input placeholder="Пароль:" type="password" class="form-control" name="password"/>
+            <br/>
+            <button class="operator btn btn-info" type="submit" value="Регистрация">Войти</button>
+            <br/>
+          </form>
+          <div>
+            <a href="/Registration" class="text-black-50 fw-bold">
+              Нет аккаунта?
+            </a>
+          </div>
+          <hr class="my-4">
+          <label th:if="${message}" th:text="${message}"/>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

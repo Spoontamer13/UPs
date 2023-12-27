@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f3f3;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            padding: 50px 0;
+        }
+
+        p {
+            margin-bottom: 20px;
+            font-size: 20px;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        a, input[type=submit] {
+            color: #FFF;
+            background-color: #007BFF;
+            padding: 10px 20px;
+            text-decoration: none;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 20px;
+            transition: background-color 0.3s;
+        }
+
+        a:hover, input[type=submit]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+    <title>Подробнее</title>
+</head>
+<body>
+<div class="container">
+    <p th:text="${obj.getId()}"></p>
+    <p th:text="'Пользователь ' + ${obj.getUser().getLogin()} + ' выложил объявление:'"></p>
+    <p th:text="'Авто: ' + ${obj.getBrandModelEngine().getModelBrand().getBrand().getNameBrand()} + ' ' + ${obj.getBrandModelEngine().getModelBrand().getNameModel()}"></p>
+    <p th:text="'Двигатель: ' + ${obj.getBrandModelEngine().getVolumeEngine()} + 'л/' + ${obj.getBrandModelEngine().getCountHorsepower()} + 'л.c./' + ${obj.getBrandModelEngine().getTypeFuel().getNameTypeFuel()}"></p>
+    <p th:text="'Коробка: ' + ${obj.getTypeBox().getNameTypeBox()}"></p>
+    <p th:text="'Привод: ' + ${obj.getTypeDrive().getNameTypeDrive()}"></p>
+    <p th:text="'Год выпуска: ' + ${obj.getReleaseYear()}"></p>
+    <p th:text="'Пробег: ' + ${obj.getMileage()}"></p>
+    <p th:text="'Состояние: ' + ${obj.isCondition()} == True ? 'Битый' : 'Не битый'"></p>
+    <p th:text="'Количество владельцов: ' + ${obj.getOwners()}"></p>
+    <p th:text="'Таможня: ' + ${obj.isCustoms()} == True ? 'Не растаможен' : 'Растаможен'"></p>
+    <p th:text="'Номер телефона для связи: ' + ${obj.getNumberTelephone()}"></p>
+
+    <a th:href="@{/editCar/{id}(id = ${obj.getId()})}">Изменить</a>
+
+    <form method="POST" th:action="@{/deleteCar/{id}(id=${obj.getId()})}">
+        <input type="hidden" name="_method" value="DELETE"/>
+        <input type="submit" value="Удалить">
+    </form>
+</div>
+</body>
+</html>
